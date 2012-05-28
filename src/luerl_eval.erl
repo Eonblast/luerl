@@ -1065,7 +1065,7 @@ gc(#luerl{tabs=Ts0,meta=Meta,free=Free0,env=Env}=St) ->
 %% Scan over all live objects and mark seen tables by adding them to
 %% the seen list.
 
-mark([{in_table,_}=T|Todo], More, Seen, Ts) ->
+mark([{in_table,_}|Todo], More, Seen, Ts) ->
     %%io:format("gc: ~p\n", [T]),
     mark(Todo, More, Seen, Ts);
 mark([#tref{i=T}|Todo], More, Seen0, Ts) ->

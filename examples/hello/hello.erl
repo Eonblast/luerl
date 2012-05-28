@@ -1,6 +1,8 @@
 %% File    : hello.erl
 %% Purpose : Brief demonstration of Luerl basics.
-%% Use     $ erlc hello.erl && erl -pa ./ebin -s hello run -s init stop -noshell
+%% Use     $ cd ./examples/hello/ 
+%%         $ erlc hello.erl 
+%%         $ erl -pa ./ebin -s hello run -s init stop -noshell
 %% Or      $ make hello
 
 -module(hello).
@@ -12,11 +14,10 @@ run() ->
     luerl:do("print(\"Hello, Robert(o)!\")"),
 
     % execute a file
-    luerl:dofile("./examples/hello/hello.lua"),
+    luerl:dofile("hello.lua"),
 
     % separately parse, then execute
-    {ok, Chunk} = luerl:load("print(\"Hello, Chunk!\")"),
-    State = luerl:start(),
-    {_Ret, _NewState} = luerl:do(Chunk, State),
-
+    {ok, Chunk} = luerl:load("print(\"Hello, Chunk!\");"),
+    State = luerl:init(),
+    luerl:do(Chunk, State),
     done.

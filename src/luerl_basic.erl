@@ -226,9 +226,9 @@ rawget([#tref{i=N},K|_], St) ->
     end;
 rawget(As, _) -> lua_error({badarg,rawget,As}).
 
-raw_get_index(Arr, I) -> orddict:find(I, Arr).
+%unused raw_get_index(Arr, I) -> orddict:find(I, Arr).
 
-raw_get_key(I, Tab) -> orddict:find(I, Tab).
+%unused raw_get_key(I, Tab) -> orddict:find(I, Tab).
 
 raw_set_index(Arr, I, nil) -> orddict:erase(I, Arr);
 raw_set_index(Arr, I, V) -> orddict:store(I, V, Arr).

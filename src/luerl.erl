@@ -69,7 +69,7 @@ do(S, St) when is_list(S) ->
     {ok,C} = load(S),
     luerl_eval:chunk(C, [], St);
 do(C, St) ->
-    luerl_eval:call(C, [], St).
+    luerl_eval:chunk(C, [], St).
 
 %% luerl:dofile(Path[, State]) -> {Result, NewState}.
 dofile(Path) ->

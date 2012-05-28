@@ -28,13 +28,28 @@ $(BEAMDIR)/%.beam: $(SRCDIR)/%.erl
 	erl -noinput -run yecc file "$<" -run init stop -noshell
 
 hello: all
-	@ erl -pa ./ebin -s hello run -s init stop -noshell
+	@ erl -pa ./ebin ./examples/hello/ -s hello run -s init stop -noshell
 
-hello.beam: hello.erl
+hello.beam: ./examples/hello/hello.erl
 	@ echo "----------------------------------" 
 	@ echo "Compiling and running ./hello.erl:" 
-	erlc hello.erl
-	erl -pa ./ebin -s hello run -s init stop -noshell
+	cd ./examples/hello/ \
+&& erlc hello.erl \
+&& erl -pa ../../ebin -s hello run -s init stop -noshell
+
+minibench: ./examples/minibench/minibench.erl
+	@ echo "----------------------------------" 
+	@ echo "Compiling and running minibench.erl:" 
+	cd ./examples/minibench/ \
+&& erlc minibench.erl \
+&& erl -pa ../../ebin -s minibench run -s init stop -noshell
+
+minibench2: ./examples/minibench/minibench2.erl
+	@ echo "----------------------------------" 
+	@ echo "Compiling and running minibench2.erl:" 
+	cd ./examples/minibench \
+&& erlc minibench2.erl \
+&& erl -pa ../../ebin -s minibench2 run -s init stop -noshell
 
 hello2: all
 	@ echo "-------------------------------------------" 
